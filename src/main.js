@@ -121,7 +121,7 @@ function load(time, eSite, eLoad, durationOut, durationIn){
 
 function sleep(time, func){
     new Promise((resolve) => setTimeout(resolve, time)).then(() => {
-        func();
+        func;
     })
 }
 
