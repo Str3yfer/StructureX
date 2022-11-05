@@ -1,15 +1,15 @@
 
-// ---------------     ------------------      -------------
-// -                           -               -           -
-// -                           -               -           -
-// -                           -               -           -
-// -                           -               -------------
-// ---------------             -               --
-//               -             -               -  -
-//               -             -               -    -
-//               -             -               -      -
-//               -             -               -        -
-// ---------------             -               -          -
+// ---------------     ----------
+// -                           - 
+// -                           - 
+// -                           - 
+// -                           - 
+// ---------------             - 
+//               -             - 
+//               -             - 
+//               -             - 
+//               -             - 
+// ---------------             - 
 
 // by St3yfer
 
@@ -18,14 +18,14 @@
     function echo(arg) {
         if (arg == true) {
             echoF = 1;
-        } else if (arg == false) {
+        } else if (arg == false) 
             echoF = 0;
         }
     }
 
     function checkConnect() {
         if (echoF == 1) {
-            console.log('Structure susscesful connected!');
+            console.log('Structur
         }
     }
 
@@ -46,24 +46,24 @@ const pos = {
     r: 'right'
 };
 
-const hAligns = ['left', 'center', 'right'];
-const vAligns = ['top', 'middle', 'bottom'];
+const hAligns = ['left', 'center'
+const vAligns = ['top', 'middle',
 
 //MAIN
 
 function v(elem, arg, attr){
     if (arg == null) {
-        return document.querySelector(elem);
+        return document.querySele
     } else {
         if (arg == 'length') {
-            return document.querySelector(elem).innerHTML.length;
-        } else if (arg == 'val') {
-            return document.querySelector(elem).value;
-        } else if (arg == 'atr' || arg == 'attr') {
+            return document.query
+        } else if (arg == 'val') 
+            return document.query
+        } else if (arg == 'atr' |
             if (attr != null) {
-                return document.querySelector(elem).getAttribute(attr);
+                return document.q
             } else {
-                console.error('Attr = null');
+                console.error('At
             }
 
         }
@@ -71,56 +71,56 @@ function v(elem, arg, attr){
 }
 
 function on(elem, type, func){
-    return elem.addEventListener(type, func);
+    return elem.addEventListener(
 }
 
 function str(elem, position){
     elem.style.display = 'flex';
-    elem.style.justifyContent = pos[position];
-}
+    elem.style.justifyContent = p
+} 
 
-function load(time, eSite, eLoad, durationOut, durationIn){
-    if(durationOut != 0 || durationOut != null){
+function load(time, eSite, eLoad,
+    if(durationOut != 0 || durati
         eSite.style.opacity = 1;
         let elemLoadOpacity = 0;
-        let elemOpacity = Number(eSite.style.opacity);
-        function setDurHideLoad() {
+        let elemOpacity = Number(
+        function setDurHideLoad()
             elemOpacity -= 0.1;
-            elemLoadOpacity += 0.1;
-            eSite.style.opacity = elemOpacity;
-            eLoad.style.opacity = elemLoadOpacity;
-            if (elemOpacity <= 0) {
-                clearInterval(inv);
+            elemLoadOpacity += 0.
+            eSite.style.opacity =
+            eLoad.style.opacity =
+            if (elemOpacity <= 0)
+                clearInterval(inv
             }
         }
-        let inv = setInterval(setDurHideLoad, durationOut);
+        let inv = setInterval(set
     } else {
         eSite.style.opacity = 0;
         eLoad.style.opacity = 1;
     }
-    new Promise((resolve) => setTimeout(resolve, time)).then(() => {
-        if (durationIn != 0 || durationIn != null) {
-            eSite.style.opacity = 0;
-            let elemLoadOpacity = 0;
-            let elemOpacity = Number(eSite.style.opacity);
-            function setDurShowLoad() {
-                elemOpacity += 0.01;
-                eSite.style.opacity = elemOpacity;
-                eLoad.style.opacity = -elemOpacity;
-                if (elemOpacity >= 1) {
-                    clearInterval(inv);
+    new Promise((resolve) => setT
+        if (durationIn != 0 || du
+            eSite.style.opacity =
+            let elemLoadOpacity =
+            let elemOpacity = Num
+            function setDurShowLo
+                elemOpacity += 0.
+                eSite.style.opaci
+                eLoad.style.opaci
+                if (elemOpacity >
+                    clearInterval
                 }
             }
-            let inv = setInterval(setDurShowLoad, durationIn);
+            let inv = setInterval
         }else{
-            eSite.style.opacity = 1;
-            eLoad.style.opacity = 0;
+            eSite.style.opacity =
+            eLoad.style.opacity =
         }
     })
 }
 
 function sleep(time, func){
-    new Promise((resolve) => setTimeout(resolve, time)).then(() => {
+    new Promise((resolve) => setT
         func;
     })
 }
@@ -129,35 +129,36 @@ function sleep(time, func){
 
 class Css_css{
     resize(elem, type){
-        elem.style.overflow = 'auto';
-        if (type == 'b' || type == 'both'){
-            elem.style.resize = 'both';
-        } else if (type == 'v' || type == 'vertical'){
-            elem.style.resize = 'vertical';
-        } else if (type == 'h' || type == 'horizontal'){
-            elem.style.resize = 'horizontal';
+        elem.style.overflow = 'au
+        if (type == 'b' || type =
+            elem.style.resize = '
+        } else if (type == 'v' ||
+            elem.style.resize = '
+        } else if (type == 'h' ||
+            elem.style.resize = '
         } else{
-            elem.style.resize = type;
+            elem.style.resize = t
         }
+        
     }
 }
 
 // Attr
 class Attributes_attr{
     get(elem, attr) {
-        return elem.getAttribute(attr);
+        return elem.getAttribute(
     }
 
     add(elem, attr, val){
         if(val != null){
-            return elem.setAttribute(attr, val);
+            return elem.setAttrib
         }else{
-            console.error('Value = null');
+            console.error('Value 
         }
     }
 
     remove(elem, attr){
-        return elem.removeAttribute(attr, attr);
+        return elem.removeAttribu
     }
 }
 
@@ -165,112 +166,118 @@ class Attributes_attr{
 class Animate_ani{
     show(elem, duration){
         let dur = 1;
-        if (duration == null || duration == 'not'){
-            elem.style.opacity = '1';
-        } else if (duration == 'veryfast') {
+        if (duration == null || d
+            elem.style.opacity = 
+        } else if (duration == 'v
             dur = 2;
-        } else if (duration == 'fast') {
+        } else if (duration == 'f
             dur = 10;
-        } else if (duration == 'normal') {
+        } else if (duration == 'n
             dur = 20;
         }
-        else if (duration == 'slow') {
+        else if (duration == 'slo
             dur = 40;
         }
-        else if (duration == 'veryslow') {
+        else if (duration == 'ver
             dur = 80;
         } else {
-            if (typeof duration == 'number'){
+            if (typeof duration =
                 dur = duration;
             }
         }
-        elemOpacity = Number(e.style.opacity);
+        let elemOpacity = Number(
         function setShow() {
             elemOpacity += 0.01;
-            e.style.opacity = elemOpacity;
-            if (elemOpacity >= 1) {
-                clearInterval(inv);
+            elem.style.opacity = 
+            if (elemOpacity >= 1)
+                clearInterval(inv
             }
         }
-        var inv = setInterval(setShow, dur)
+        var inv = setInterval(set
     }
 
     hide(elem, duration) {
         let dur = 1;
-        if (duration == null || duration == 'not') {
-            elem.style.opacity = '1';
-        } else if (duration == 'veryfast') {
+        if (duration == null || d
+            elem.style.opacity = 
+        } else if (duration == 'v
             dur = 2;
-        } else if (duration == 'fast') {
+        } else if (duration == 'f
             dur = 10;
-        } else if (duration == 'normal') {
+        } else if (duration == 'n
             dur = 20;
         }
-        else if (duration == 'slow') {
+        else if (duration == 'slo
             dur = 40;
         }
-        else if (duration == 'veryslow') {
+        else if (duration == 'ver
             dur = 80;
         } else {
-            if (typeof duration == 'number') {
+            if (typeof duration =
                 dur = duration;
             }
         }
-        elemOpacity = Number(e.style.opacity);
+        let elemOpacity = Number(
         function setHide() {
             elemOpacity -= 0.01;
-            e.style.opacity = elemOpacity;
-            if (elemOpacity <= 0) {
-                clearInterval(inv);
+            elem.style.opacity = 
+            if (elemOpacity <= 0)
+                clearInterval(inv
             }
         }
-        var inv = setInterval(setHide, dur)
+        var inv = setInterval(set
     }
 
-    slide(elem, arg, pro, duration){
-        if (arg == 'from left to right' || arg == 'left => right' || arg == 'left > right' || arg == 'left to right' || arg == 'left right' || arg == 'l => r' || arg == 'l > r' || arg == 'l r'){
-            let elemLeft = elem.style.left;
-            let timer = setInterval(function() {
+    slide(elem, arg, pro, duratio
+        if(pos == null){
+            elem.style.position =
+        } else{
+            elem.style.position =
+        }
+        
+        if (arg == 'from left to 
+            let elemLeft = elem.s
+            let timer = setInterv
                 elemLeft++;
-                if (elemLeft >= pro){
-                    clearInterval(timer);
+                if (elemLeft >= p
+                    clearInterval
                     return;
                 }
 
-                elem.style.left = elemLeft + '%';
+                elem.style.left =
             }, duration)
-        } else if (arg == 'from right to left' || arg == 'right => left' || arg == 'right > left' || arg == 'right to left' || arg == 'right left' || arg == 'r => l' || arg == 'r > l' || arg == 'r l') {
-            let elemRight = elem.style.right;
-            let timer = setInterval(function () {
+        } else if (arg == 'from r
+            let elemRight = elem.
+            let timer = setInterv
                 elemRight++;
-                if (elemRight >= pro) {
-                    clearInterval(timer);
+                if (elemRight >= 
+                    clearInterval
                     return;
                 }
 
-                elem.style.right = elemRight + '%';
+                elem.style.right 
             }, duration)
-        } else if (arg == 'from top to bottom' || arg == 'top => bottom' || arg == 'top > bottom' || arg == 'top to bottom' || arg == 'top bottom' || arg == 't => b' || arg == 't > b' || arg == 't b') {
-            let elemTop = elem.style.top;
-            let timer = setInterval(function () {
+        } else if (arg == 'from t
+            let elemTop = elem.st
+            let timer = setInterv
                 elemTop++;
-                if (elemTop >= pro) {
-                    clearInterval(timer);
+                if (elemTop >= pr
+                    clearInterval
                     return;
                 }
 
-                elem.style.top = elemTop + '%';
+                elem.style.top = 
             }, duration)
-        } else if (arg == 'from bottom to top' || arg == 'bottom => top' || arg == 'bottom > top' || arg == 'bottom to top' || arg == 'bottom top' || arg == 'b => t' || arg == 'b > t' || arg == 'b t') {
-            let elemBottom = elem.style.bottom;
-            let timer = setInterval(function () {
+        } else if (arg == 'from b
+            let elemBottom = elem
+            let timer = setInterv
                 elemBottom++;
-                if (elemBottom >= pro) {
-                    clearInterval(timer);
+                if (elemBottom >=
+                    clearInterval
                     return;
                 }
-
-                elem.style.bottom = elemBottom + '%';
+                console.log('ds')
+                elem.style.bottom
             }, duration)
         }
     }
@@ -281,9 +288,9 @@ class Animate_ani{
 class window_win{
     size(type) {
         if(type == 'w'){
-            return window.innerHeight;
+            return window.innerHe
         } else if (type == 'h'){
-            return window.innerHeight;
+            return window.innerHe
         }
         
     }
@@ -291,9 +298,9 @@ class window_win{
     dwin (type, text) {
         if (type == 'alert') {
             return alert(text);
-        } else if (type == 'prompt') {
+        } else if (type == 'promp
             return prompt(text);
-        } else if (type == 'confirm') {
+        } else if (type == 'confi
             return confirm(text);
         }
     }
@@ -306,10 +313,10 @@ class Class_classes {
         return elem.classList();
     }
     add(elem, classType){
-        elem.classList.add(classType);
+        elem.classList.add(classT
     }
     remove(elem, classType){
-        elem.classList.remove(classType);
+        elem.classList.remove(cla
     }
 }
 
@@ -329,11 +336,11 @@ class console_cmd{
 
     group(title, collapsed, end){
         console.group(title);
-        console.groupCollapsed(collapsed);
+        console.groupCollapsed(co
         if(end == 'move'){
             console.groupEnd();
         }
-        else if (end == 'finally' || end == null){
+        else if (end == 'finally'
             console.groupEnd();
             console.groupEnd();
         }
@@ -348,17 +355,17 @@ class console_cmd{
 class Text_text{
     html(elem, arg) {
         if (arg == null) {
-            return elem.innerHTML;
+            return elem.innerHTML
         } else {
-            return elem.innerHTML = arg;
+            return elem.innerHTML
         }
     }
 
     text(elem, arg) {
         if (arg == null) {
-            return elem.innerTEXT;
+            return elem.innerTEXT
         } else {
-            return elem.innerTEXT = arg;
+            return elem.innerTEXT
         }
     }
 
@@ -366,7 +373,7 @@ class Text_text{
         if (arg == null) {
             return elem.value;
         } else {
-            return elem.value = arg;
+            return elem.value = a
         }
     }
 }
@@ -377,25 +384,25 @@ class Text_text{
 class Math_math{
     rand(min, max){
         if(min > max){
-            console.error('The MIN number is greater than the MAX number!');
+            console.error('The MI
         }else{
-            return Math.floor(Math.random() * max) + min;
+            return Math.floor(Mat
         }
     }
 }
 
 class Search_search{
     sLoc(text, world){
-        let res = text.indexOf(world);
+        let res = text.indexOf(wo
         return res;
     }
 
     sCount(text, world){
-        let res = text.indexOf(world);
+        let res = text.indexOf(wo
         let count = 0;
         while (res !== -1) {
             count++;
-            res = text.indexOf(world, res + 1);
+            res = text.indexOf(wo
         }
         return count;
     }
@@ -410,7 +417,7 @@ const attr = new Attributes_attr;
 
 const ani = new Animate_ani;
 
-const classes = new Class_classes;
+const classes = new Class_classes
 
 const cmd = new console_cmd;
 
