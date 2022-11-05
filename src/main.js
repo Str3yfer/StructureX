@@ -130,16 +130,15 @@ function sleep(time, func){
 class Css_css{
     resize(elem, type){
         elem.style.overflow = 'auto';
-        if(type == 'b'){
+        if (type == 'b' || type == 'both'){
             elem.style.resize = 'both';
-        } else if(type == 'v'){
+        } else if (type == 'v' || type == 'vertical'){
             elem.style.resize = 'vertical';
-        } else if(type == 'h'){
+        } else if (type == 'h' || type == 'horizontal'){
             elem.style.resize = 'horizontal';
         } else{
             elem.style.resize = type;
         }
-        
     }
 }
 
