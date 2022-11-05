@@ -1,15 +1,15 @@
 
-// ---------------     ----------
-// -                           - 
-// -                           - 
-// -                           - 
-// -                           - 
-// ---------------             - 
-//               -             - 
-//               -             - 
-//               -             - 
-//               -             - 
-// ---------------             - 
+// ---------------     ------------------      -------------
+// -                           -               -           -
+// -                           -               -           -
+// -                           -               -           -
+// -                           -               -------------
+// ---------------             -               --
+//               -             -               -  -
+//               -             -               -    -
+//               -             -               -      -
+//               -             -               -        -
+// ---------------             -               -          -
 
 // by St3yfer
 
@@ -18,14 +18,14 @@
     function echo(arg) {
         if (arg == true) {
             echoF = 1;
-        } else if (arg == false) 
+        } else if (arg == false) {
             echoF = 0;
         }
     }
 
     function checkConnect() {
         if (echoF == 1) {
-            console.log('Structur
+            console.log('Structure susscesful connected!');
         }
     }
 
@@ -46,24 +46,24 @@ const pos = {
     r: 'right'
 };
 
-const hAligns = ['left', 'center'
-const vAligns = ['top', 'middle',
+const hAligns = ['left', 'center', 'right'];
+const vAligns = ['top', 'middle', 'bottom'];
 
 //MAIN
 
 function v(elem, arg, attr){
     if (arg == null) {
-        return document.querySele
+        return document.querySelector(elem);
     } else {
         if (arg == 'length') {
-            return document.query
-        } else if (arg == 'val') 
-            return document.query
-        } else if (arg == 'atr' |
+            return document.querySelector(elem).innerHTML.length;
+        } else if (arg == 'val') {
+            return document.querySelector(elem).value;
+        } else if (arg == 'atr' || arg == 'attr') {
             if (attr != null) {
-                return document.q
+                return document.querySelector(elem).getAttribute(attr);
             } else {
-                console.error('At
+                console.error('Attr = null');
             }
 
         }
@@ -71,56 +71,56 @@ function v(elem, arg, attr){
 }
 
 function on(elem, type, func){
-    return elem.addEventListener(
+    return elem.addEventListener(type, func);
 }
 
 function str(elem, position){
     elem.style.display = 'flex';
-    elem.style.justifyContent = p
+    elem.style.justifyContent = pos[position];
 } 
 
-function load(time, eSite, eLoad,
-    if(durationOut != 0 || durati
+function load(time, eSite, eLoad, durationOut, durationIn){
+    if(durationOut != 0 || durationOut != null){
         eSite.style.opacity = 1;
         let elemLoadOpacity = 0;
-        let elemOpacity = Number(
-        function setDurHideLoad()
+        let elemOpacity = Number(eSite.style.opacity);
+        function setDurHideLoad() {
             elemOpacity -= 0.1;
-            elemLoadOpacity += 0.
-            eSite.style.opacity =
-            eLoad.style.opacity =
-            if (elemOpacity <= 0)
-                clearInterval(inv
+            elemLoadOpacity += 0.1;
+            eSite.style.opacity = elemOpacity;
+            eLoad.style.opacity = elemLoadOpacity;
+            if (elemOpacity <= 0) {
+                clearInterval(inv);
             }
         }
-        let inv = setInterval(set
+        let inv = setInterval(setDurHideLoad, durationOut);
     } else {
         eSite.style.opacity = 0;
         eLoad.style.opacity = 1;
     }
-    new Promise((resolve) => setT
-        if (durationIn != 0 || du
-            eSite.style.opacity =
-            let elemLoadOpacity =
-            let elemOpacity = Num
-            function setDurShowLo
-                elemOpacity += 0.
-                eSite.style.opaci
-                eLoad.style.opaci
-                if (elemOpacity >
-                    clearInterval
+    new Promise((resolve) => setTimeout(resolve, time)).then(() => {
+        if (durationIn != 0 || durationIn != null) {
+            eSite.style.opacity = 0;
+            let elemLoadOpacity = 0;
+            let elemOpacity = Number(eSite.style.opacity);
+            function setDurShowLoad() {
+                elemOpacity += 0.01;
+                eSite.style.opacity = elemOpacity;
+                eLoad.style.opacity = -elemOpacity;
+                if (elemOpacity >= 1) {
+                    clearInterval(inv);
                 }
             }
-            let inv = setInterval
+            let inv = setInterval(setDurShowLoad, durationIn);
         }else{
-            eSite.style.opacity =
-            eLoad.style.opacity =
+            eSite.style.opacity = 1;
+            eLoad.style.opacity = 0;
         }
     })
 }
 
 function sleep(time, func){
-    new Promise((resolve) => setT
+    return new Promise((resolve) => setTimeout(resolve, time)).then(() => {
         func();
     })
 }
@@ -129,15 +129,15 @@ function sleep(time, func){
 
 class Css_css{
     resize(elem, type){
-        elem.style.overflow = 'au
-        if (type == 'b' || type =
-            elem.style.resize = '
-        } else if (type == 'v' ||
-            elem.style.resize = '
-        } else if (type == 'h' ||
-            elem.style.resize = '
+        elem.style.overflow = 'auto';
+        if (type == 'b' || type == 'both'){
+            elem.style.resize = 'both';
+        } else if (type == 'v' || type == 'vertical'){
+            elem.style.resize = 'vertical';
+        } else if (type == 'h' || type == 'horizontal'){
+            elem.style.resize = 'horizontal';
         } else{
-            elem.style.resize = t
+            elem.style.resize = type;
         }
         
     }
@@ -146,19 +146,19 @@ class Css_css{
 // Attr
 class Attributes_attr{
     get(elem, attr) {
-        return elem.getAttribute(
+        return elem.getAttribute(attr);
     }
 
     add(elem, attr, val){
         if(val != null){
-            return elem.setAttrib
+            return elem.setAttribute(attr, val);
         }else{
-            console.error('Value 
+            console.error('Value = null');
         }
     }
 
     remove(elem, attr){
-        return elem.removeAttribu
+        return elem.removeAttribute(attr, attr);
     }
 }
 
@@ -166,118 +166,118 @@ class Attributes_attr{
 class Animate_ani{
     show(elem, duration){
         let dur = 1;
-        if (duration == null || d
-            elem.style.opacity = 
-        } else if (duration == 'v
+        if (duration == null || duration == 'not'){
+            elem.style.opacity = '1';
+        } else if (duration == 'veryfast') {
             dur = 2;
-        } else if (duration == 'f
+        } else if (duration == 'fast') {
             dur = 10;
-        } else if (duration == 'n
+        } else if (duration == 'normal') {
             dur = 20;
         }
-        else if (duration == 'slo
+        else if (duration == 'slow') {
             dur = 40;
         }
-        else if (duration == 'ver
+        else if (duration == 'veryslow') {
             dur = 80;
         } else {
-            if (typeof duration =
+            if (typeof duration == 'number'){
                 dur = duration;
             }
         }
-        let elemOpacity = Number(
+        let elemOpacity = Number(elem.style.opacity);
         function setShow() {
             elemOpacity += 0.01;
-            elem.style.opacity = 
-            if (elemOpacity >= 1)
-                clearInterval(inv
+            elem.style.opacity = elemOpacity;
+            if (elemOpacity >= 1) {
+                clearInterval(inv);
             }
         }
-        var inv = setInterval(set
+        var inv = setInterval(setShow, dur)
     }
 
     hide(elem, duration) {
         let dur = 1;
-        if (duration == null || d
-            elem.style.opacity = 
-        } else if (duration == 'v
+        if (duration == null || duration == 'not') {
+            elem.style.opacity = '1';
+        } else if (duration == 'veryfast') {
             dur = 2;
-        } else if (duration == 'f
+        } else if (duration == 'fast') {
             dur = 10;
-        } else if (duration == 'n
+        } else if (duration == 'normal') {
             dur = 20;
         }
-        else if (duration == 'slo
+        else if (duration == 'slow') {
             dur = 40;
         }
-        else if (duration == 'ver
+        else if (duration == 'veryslow') {
             dur = 80;
         } else {
-            if (typeof duration =
+            if (typeof duration == 'number') {
                 dur = duration;
             }
         }
-        let elemOpacity = Number(
+        let elemOpacity = Number(elem.style.opacity);
         function setHide() {
             elemOpacity -= 0.01;
-            elem.style.opacity = 
-            if (elemOpacity <= 0)
-                clearInterval(inv
+            elem.style.opacity = elemOpacity;
+            if (elemOpacity <= 0) {
+                clearInterval(inv);
             }
         }
-        var inv = setInterval(set
+        var inv = setInterval(setHide, dur)
     }
 
-    slide(elem, arg, pro, duratio
+    slide(elem, arg, pro, duration, pos){
         if(pos == null){
-            elem.style.position =
+            elem.style.position = 'absolute';
         } else{
-            elem.style.position =
+            elem.style.position = pos;
         }
         
-        if (arg == 'from left to 
-            let elemLeft = elem.s
-            let timer = setInterv
+        if (arg == 'from left to right' || arg == 'left => right' || arg == 'left > right' || arg == 'left to right' || arg == 'left right' || arg == 'l => r' || arg == 'l > r' || arg == 'l r'){
+            let elemLeft = elem.style.left;
+            let timer = setInterval(function() {
                 elemLeft++;
-                if (elemLeft >= p
-                    clearInterval
+                if (elemLeft >= pro){
+                    clearInterval(timer);
                     return;
                 }
 
-                elem.style.left =
+                elem.style.left = elemLeft + '%';
             }, duration)
-        } else if (arg == 'from r
-            let elemRight = elem.
-            let timer = setInterv
+        } else if (arg == 'from right to left' || arg == 'right => left' || arg == 'right > left' || arg == 'right to left' || arg == 'right left' || arg == 'r => l' || arg == 'r > l' || arg == 'r l') {
+            let elemRight = elem.style.right;
+            let timer = setInterval(function () {
                 elemRight++;
-                if (elemRight >= 
-                    clearInterval
+                if (elemRight >= pro) {
+                    clearInterval(timer);
                     return;
                 }
 
-                elem.style.right 
+                elem.style.right = elemRight + '%';
             }, duration)
-        } else if (arg == 'from t
-            let elemTop = elem.st
-            let timer = setInterv
+        } else if (arg == 'from top to bottom' || arg == 'top => bottom' || arg == 'top > bottom' || arg == 'top to bottom' || arg == 'top bottom' || arg == 't => b' || arg == 't > b' || arg == 't b') {
+            let elemTop = elem.style.top;
+            let timer = setInterval(function () {
                 elemTop++;
-                if (elemTop >= pr
-                    clearInterval
+                if (elemTop >= pro) {
+                    clearInterval(timer);
                     return;
                 }
 
-                elem.style.top = 
+                elem.style.top = elemTop + '%';
             }, duration)
-        } else if (arg == 'from b
-            let elemBottom = elem
-            let timer = setInterv
+        } else if (arg == 'from bottom to top' || arg == 'bottom => top' || arg == 'bottom > top' || arg == 'bottom to top' || arg == 'bottom top' || arg == 'b => t' || arg == 'b > t' || arg == 'b t') {
+            let elemBottom = elem.style.bottom;
+            let timer = setInterval(function () {
                 elemBottom++;
-                if (elemBottom >=
-                    clearInterval
+                if (elemBottom >= pro) {
+                    clearInterval(timer);
                     return;
                 }
                 console.log('ds')
-                elem.style.bottom
+                elem.style.bottom = elemBottom + '%';
             }, duration)
         }
     }
@@ -288,9 +288,9 @@ class Animate_ani{
 class window_win{
     size(type) {
         if(type == 'w'){
-            return window.innerHe
+            return window.innerHeight;
         } else if (type == 'h'){
-            return window.innerHe
+            return window.innerHeight;
         }
         
     }
@@ -298,9 +298,9 @@ class window_win{
     dwin (type, text) {
         if (type == 'alert') {
             return alert(text);
-        } else if (type == 'promp
+        } else if (type == 'prompt') {
             return prompt(text);
-        } else if (type == 'confi
+        } else if (type == 'confirm') {
             return confirm(text);
         }
     }
@@ -313,10 +313,10 @@ class Class_classes {
         return elem.classList();
     }
     add(elem, classType){
-        elem.classList.add(classT
+        elem.classList.add(classType);
     }
     remove(elem, classType){
-        elem.classList.remove(cla
+        elem.classList.remove(classType);
     }
 }
 
@@ -336,11 +336,11 @@ class console_cmd{
 
     group(title, collapsed, end){
         console.group(title);
-        console.groupCollapsed(co
+        console.groupCollapsed(collapsed);
         if(end == 'move'){
             console.groupEnd();
         }
-        else if (end == 'finally'
+        else if (end == 'finally' || end == null){
             console.groupEnd();
             console.groupEnd();
         }
@@ -355,17 +355,17 @@ class console_cmd{
 class Text_text{
     html(elem, arg) {
         if (arg == null) {
-            return elem.innerHTML
+            return elem.innerHTML;
         } else {
-            return elem.innerHTML
+            return elem.innerHTML = arg;
         }
     }
 
     text(elem, arg) {
         if (arg == null) {
-            return elem.innerTEXT
+            return elem.innerTEXT;
         } else {
-            return elem.innerTEXT
+            return elem.innerTEXT = arg;
         }
     }
 
@@ -373,7 +373,7 @@ class Text_text{
         if (arg == null) {
             return elem.value;
         } else {
-            return elem.value = a
+            return elem.value = arg;
         }
     }
 }
@@ -384,25 +384,25 @@ class Text_text{
 class Math_math{
     rand(min, max){
         if(min > max){
-            console.error('The MI
+            console.error('The MIN number is greater than the MAX number!');
         }else{
-            return Math.floor(Mat
+            return Math.floor(Math.random() * max) + min;
         }
     }
 }
 
 class Search_search{
     sLoc(text, world){
-        let res = text.indexOf(wo
+        let res = text.indexOf(world);
         return res;
     }
 
     sCount(text, world){
-        let res = text.indexOf(wo
+        let res = text.indexOf(world);
         let count = 0;
         while (res !== -1) {
             count++;
-            res = text.indexOf(wo
+            res = text.indexOf(world, res + 1);
         }
         return count;
     }
@@ -417,7 +417,7 @@ const attr = new Attributes_attr;
 
 const ani = new Animate_ani;
 
-const classes = new Class_classes
+const classes = new Class_classes;
 
 const cmd = new console_cmd;
 
@@ -428,3 +428,4 @@ const text = new Text_text;
 const math = new Math_math;
 
 const search = new Search_search;
+
