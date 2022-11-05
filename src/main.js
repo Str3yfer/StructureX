@@ -303,6 +303,9 @@ class window_win{
 //classes
 
 class Class_classes {
+    get(elem) {
+        return elem.classList();
+    }
     add(elem, classType){
         elem.classList.add(classType);
     }
