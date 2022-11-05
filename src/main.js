@@ -121,7 +121,7 @@ function load(time, eSite, eLoad,
 
 function sleep(time, func){
     new Promise((resolve) => setT
-        func;
+        func();
     })
 }
 
