@@ -280,23 +280,23 @@ class Animate_ani{
 
 // Window
 class window_win{
-    height() {
-        return window.innerHeight;
+    size(type) {
+        if(type == 'w'){
+            return window.innerHeight;
+        } else if (type == 'h'){
+            return window.innerHeight;
+        }
+        
     }
 
-    width() {
-        return window.innerHeight;
-    }
-}
-
-// Dialog windows
-function dwin(type, text) {
-    if (type == 'alert') {
-        return alert(text);
-    } else if (type == 'prompt') {
-        return prompt(text);
-    } else if (type == 'confirm') {
-        return confirm(text);
+    dwin (type, text) {
+        if (type == 'alert') {
+            return alert(text);
+        } else if (type == 'prompt') {
+            return prompt(text);
+        } else if (type == 'confirm') {
+            return confirm(text);
+        }
     }
 }
 
