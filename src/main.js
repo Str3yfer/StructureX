@@ -326,11 +326,19 @@ class console_cmd{
         console.log(arg);
     }
 
-    error(arg){
+    err(arg){
         console.error(arg);
     }
 
-    clear(){
+    warn(arg){
+        console.warn(arg);
+    }
+
+    trace(arg){
+        console.trace(arg);
+    }
+
+    cls(){
         console.clear();
     }
 
@@ -348,6 +356,10 @@ class console_cmd{
 
     dir(arg){
         console.dir(arg);
+    }
+
+    dirX(arg) {
+        console.dirxml(arg);
     }
 }
 
