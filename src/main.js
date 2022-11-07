@@ -51,6 +51,7 @@ const vAligns = ['top', 'middle', 'bottom'];
 
 //MAIN
 
+
 function v(elem, arg, attr){
     if (arg == null) {
         return document.querySelector(elem);
@@ -65,7 +66,6 @@ function v(elem, arg, attr){
             } else {
                 console.error('Attr = null');
             }
-
         }
     }
 }
@@ -139,9 +139,23 @@ class Css_css{
         } else{
             elem.style.resize = type;
         }
-        
     }
 }
+
+//classes
+
+class Class_classes {
+    get(elem) {
+        return elem.classList();
+    }
+    add(elem, classType) {
+        elem.classList.add(classType);
+    }
+    remove(elem, classType) {
+        elem.classList.remove(classType);
+    }
+}
+
 
 // Attr
 class Attributes_attr{
@@ -158,7 +172,7 @@ class Attributes_attr{
     }
 
     remove(elem, attr){
-        return elem.removeAttribute(attr, attr);
+        return elem.removeAttribute(attr);
     }
 }
 
@@ -283,43 +297,6 @@ class Animate_ani{
     }
 }
 
-
-// Window
-class window_win{
-    size(type) {
-        if(type == 'w'){
-            return window.innerHeight;
-        } else if (type == 'h'){
-            return window.innerHeight;
-        }
-        
-    }
-
-    dwin (type, text) {
-        if (type == 'alert') {
-            return alert(text);
-        } else if (type == 'prompt') {
-            return prompt(text);
-        } else if (type == 'confirm') {
-            return confirm(text);
-        }
-    }
-}
-
-//classes
-
-class Class_classes {
-    get(elem) {
-        return elem.classList();
-    }
-    add(elem, classType){
-        elem.classList.add(classType);
-    }
-    remove(elem, classType){
-        elem.classList.remove(classType);
-    }
-}
-
 // Console
 class console_cmd{
     log(arg) {
@@ -336,10 +313,6 @@ class console_cmd{
 
     trace(arg){
         console.trace(arg);
-    }
-
-    cls(){
-        console.clear();
     }
 
     group(title, collapsed, end){
@@ -360,6 +333,32 @@ class console_cmd{
 
     dirX(arg) {
         console.dirxml(arg);
+    }
+
+    cls() {
+        console.clear();
+    }
+}
+
+// Window
+class window_win {
+    size(type) {
+        if (type == 'w') {
+            return window.innerHeight;
+        } else if (type == 'h') {
+            return window.innerHeight;
+        }
+
+    }
+
+    dwin(type, text) {
+        if (type == 'alert') {
+            return alert(text);
+        } else if (type == 'prompt') {
+            return prompt(text);
+        } else if (type == 'confirm') {
+            return confirm(text);
+        }
     }
 }
 
@@ -425,11 +424,11 @@ class Search_search{
 
 const css = new Css_css;
 
+const classes = new Class_classes;
+
 const attr = new Attributes_attr;
 
 const ani = new Animate_ani;
-
-const classes = new Class_classes;
 
 const cmd = new console_cmd;
 
