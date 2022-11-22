@@ -25,7 +25,7 @@
 
     function checkConnect() {
         if (echoF == 1) {
-            console.log('Structure susscesful connected!');
+            console.log('StructureX susscesful connected!');
         }
     }
 
@@ -63,6 +63,24 @@ function v(elem, arg, attr){
         } else if (arg == 'atr' || arg == 'attr') {
             if (attr != null) {
                 return document.querySelector(elem).getAttribute(attr);
+            } else {
+                console.error('Attr = null');
+            }
+        }
+    }
+}
+
+function vAll(elem, arg, attr) {
+    if (arg == null) {
+        return document.querySelectorAll(elem);
+    } else {
+        if (arg == 'length') {
+            return document.querySelectorAll(elem).innerHTML.length;
+        } else if (arg == 'val') {
+            return document.querySelectorAll(elem).value;
+        } else if (arg == 'atr' || arg == 'attr') {
+            if (attr != null) {
+                return document.querySelectorAll(elem).getAttribute(attr);
             } else {
                 console.error('Attr = null');
             }
@@ -123,6 +141,16 @@ function sleep(time, func){
     return new Promise((resolve) => setTimeout(resolve, time)).then(() => {
         func();
     })
+}
+
+function exit(arg){
+    const prevOnError = window.onerror
+    window.onerror = () => {
+        window.onerror = prevOnError
+        return true
+    }
+
+    throw new Error(`Script termination with code ${arg || 0}.`)
 }
 
 //CSS 
